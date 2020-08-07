@@ -243,7 +243,7 @@ $(document).ready(function(){
                   
 
           var str = '<div class="col-md-3 col-sm-6 mb-2">'+
-                      '<div class="card mb-4">'+
+                      '<div class="card mb-4" style="height:510px">'+
                         '<img class="card-img-top" src="'+img+'"alt="img/download.jpg">'+
                         '<div class="card-body">'+
                             '<h6 style="color:blue" class="card-title" style="text-decoration-color: lightskyblue">'+data[i].mission_name+" #"+data[i].flight_number+'</h6>'+
