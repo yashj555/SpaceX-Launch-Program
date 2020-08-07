@@ -1,0 +1,44 @@
+/* .btn-primary{
+    color:#fff;
+    background-color:rgb(148, 221, 148);
+    border-color:rgb(148, 221, 148);
+}
+.btn-primary:hover
+{
+    color:#fff;
+    background-color:rgb(50,205,50);
+    border-color:rgb(50,205,50);
+}
+.btn-primary:focus
+{
+    box-shadow:0 0 0 .2rem rgba(50,205,50,.5)
+    background-color:rgb(50,205,50);
+    border-color:rgb(50,205,50);
+}
+.btn-primary.dropdown-toggle:focus{
+    box-shadow:0 0 0 .2rem rgba(50,205,50,.5)
+}
+/* .btn-primary:disabled{
+    color:#fff;background-color:rgb(148, 221, 148);border-color:rgb(148, 221, 148)
+} */
+/* .btn-primary.dropdown-toggle:focus{
+    box-shadow:0 0 0 .2rem rgba(50,205,50,.5)
+}
+ 
+.btn-primary:disabled{
+    color:#fff;
+    background-color:#000000;
+    border-color:#007bff
+} */ 
+.line { 
+              
+    /* Increase this as per requirement */ 
+    /* padding-bottom: 15px;  */
+    border-bottom-style: solid; 
+    border-bottom-width: 3.1px; 
+    width: fit-content; 
+} 
+   
+.normal-underline { 
+    text-decoration: underline; 
+} 
