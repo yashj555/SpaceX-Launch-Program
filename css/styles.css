@@ -1,37 +1,37 @@
- /* .btn-primary{
-    color:#fff;
-    background-color:rgb(148, 221, 148);
-    border-color:rgb(148, 221, 148);
+ .btn-primary{
+    color:#fff !important;  
+    background-color:rgb(50, 205, 50) !important;
+    border-color:rgb(50, 205, 50) !important;
 }
 .btn-primary:hover
 {
-    color:#fff;
-    background-color:rgb(50,205,50);
-    border-color:rgb(50,205,50);
+    color:#fff !important;
+    background-color:rgb(50,205,50) !important;
+    border-color:rgb(50,205,50) !important;
 }
 .btn-primary:focus
 {
-    box-shadow:0 0 0 .2rem rgba(50,205,50,.5);
-    background-color:rgb(50,205,50);
-    border-color:rgb(50,205,50);
+    box-shadow:0 0 0 .2rem rgba(50,205,50,.5) !important;
+    background-color:rgb(50,205,50) !important;
+    border-color:rgb(50,205,50) !important;
 }
 .btn-primary.dropdown-toggle:focus{
-    box-shadow:0 0 0 .2rem rgba(50,205,50,.5)
+    box-shadow:0 0 0 .2rem rgba(50,205,50,.5) !important;
 }
  .btn-primary:disabled
  {
-    color:#fff;background-color:  #94dd94;border-color: #94dd94;
+    color:#fff;background-color:  #94dd94;border-color: #94dd94 !important;
 } 
  
 .btn-primary.dropdown-toggle:focus{
-    box-shadow:0 0 0 .2rem rgba(50,205,50,.5)
+    box-shadow:0 0 0 .2rem rgba(50,205,50,.5) !important;
 }
 btn-primary:disabled {
-    color: #fff;
-    background-color: #94dd94;
-    border-color: #94ddf4;
-} */
- 
+    color: #fff !important;
+    background-color: #94dd94 !important;
+    border-color: #94ddf4 !important;
+}
+
 .line { 
               
     /* Increase this as per requirement */ 

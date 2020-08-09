@@ -10,7 +10,11 @@
     </head>
     <body>
     <div class="container-fluid" style="background-color:rgb(185, 188, 190)">
-        <h3 class="text-left" style="padding-top: 10px; padding-left: 10px;">Space X Launch Programs</h3>
+        <h3 class="text-left" style="padding-top: 10px; padding-left: 10px;">Space X Launch Programs </h3>
+        <div class="d-flex align-items-center"  style="padding-top: 10px; padding-left: 10px;">
+            <strong id="loader">Loading...</strong>
+            <div class="spinner-border ml-auto" role="status" aria-hidden="true"></div>
+          </div>
         <div class="row" style="padding:20px;">
             <div class="col-md-3 col-sm-4 mb-3 pb-3" id="filter_panel" style="background-color: white;max-height: 800px;">
                 <h5 style="padding-top: 10px">Filters</h5>
@@ -135,5 +139,28 @@
      
     </body>
     <script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
+    
     <script src="js/main.js"></script>
+
+    <script src="js/filterChain.js" type="module"></script>
+    <script src="js/target.js" type="module"></script> 
+    <script src="js/filterManager.js" type="module"></script>
+    
+    <script src="js/filter.js" type="module"></script>
+    <script src="js/launchFilter.js" type="module"></script>
+    <script src="js/landFilter.js" type="module"></script>
+    <script src="js/yearFilter.js" type="module"></script>
+
+    
+  
+    
+    
+    
+   
+    <!-- <script src="js/main.js"></script>
+    
+    <script src="js/main.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/main.js"></script> -->
     </html>

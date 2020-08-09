@@ -1,26 +1,48 @@
+
 var launchSuccess ;
 var landSuccess;
 var launchYear;
 var launchYearState; 
-var Data ;
+var Manager;
 $(document).ready(function(){
+  
     // just for 100 data
-
+     
+    
+    $("#loader").show();  
     fetch("https://api.spacexdata.com/v3/launches?limit=100") 
     .then(function(result) {
-        console.log("result"+result);
         return result.json();
     }).then(function(data){
         console.log(data);
         Data = data;
+        $("#loader").hide();
         insertData(data);
         launchSuccess=false;
         landSuccess = false;
         launchYear = null;
         $('#filter_launch_false').addClass('disabled');
         $('#filter_landing_false').addClass('disabled'); 
+        
+        
+        setTimeout(function()
+        {
+         
+          Manager =  new Window.filterManager(new Window.target());
 
-        attachListener();
+           
+
+          Manager.setFilter(new Window.launchFilter());
+          Manager.setFilter(new Window.landFilter());
+          Manager.setFilter(new Window.yearFilter());
+
+          console.log(Manager);
+          
+          attachListener();
+
+
+        },1000)
+       
         
     })
     .catch(function(err) {
@@ -28,7 +50,7 @@ $(document).ready(function(){
         console.log("error occured "+err);
     }); 
 
-    // added listener to the filters
+    
     function attachListener(){
        // added listener to the filters
 
@@ -44,27 +66,10 @@ $(document).ready(function(){
               $('#filter_launch_true').addClass("disabled"); 
 
               launchSuccess = true;    
-              let  url;
-              if(launchSuccess==true && landSuccess==true && launchYear==null)
-              {
-                  url = "https://api.spacexdata.com/v3/launches?limit=100&launch_success=true&land_success=true"
-              }
-              else if(launchSuccess==true && landSuccess==true && launchYear!=null)
-              {
-                  url = "https://api.spacexdata.com/v3/launches?limit=100&launch_success=true&land_success=true&launch_year="+launchYear+"";
-              }
-              else if(launchSuccess==true && landSuccess==false && launchYear==null)
-              {
-                  url = "https://api.spacexdata.com/v3/launches?limit=100&launch_success=true";
-              } 
-              else if(launchSuccess==true && landSuccess==false && launchYear!=null)
-              {
-                 url = "https://api.spacexdata.com/v3/launches?limit=100&launch_success=true&launch_year="+launchYear+""; 
-              }
-
-              
-              
-               fetching(url);
+             
+               
+              let obj = {launchSuccess,landSuccess,launchYear};
+               Manager.filterRequest(obj);
              
 
 
@@ -77,25 +82,9 @@ $(document).ready(function(){
                 $('#filter_launch_true').removeClass("disabled");
                 $('#filter_launch_false').addClass("disabled"); 
                 launchSuccess=false;
-                let url ;
-                if(landSuccess==true && launchYear!=null)
-                {
-                  url = "https://api.spacexdata.com/v3/launches?limit=100&land_success=true&launch_year="+launchYear+"";
-                }
-                else if(landSuccess==true)
-                {
-                   url = "https://api.spacexdata.com/v3/launches?limit=100&land_success=true"
-                }
-                else if(launchYear!=null)
-                {
-                   url = "https://api.spacexdata.com/v3/launches?limit=100&launch_year"+launchYear+"";
-                }
-                else 
-                {
-                  url = "https://api.spacexdata.com/v3/launches?limit=100"
-                }
                 
-                fetching(url);
+                let obj = {launchSuccess,landSuccess,launchYear};
+                Manager.filterRequest(obj);
              // filterdata       
       
            }
@@ -108,25 +97,9 @@ $(document).ready(function(){
 
                 landSuccess=true;
 
-              let  url;
-              if(launchSuccess==true && landSuccess==true && launchYear==null)
-              {
-                  url = "https://api.spacexdata.com/v3/launches?limit=100&launch_success=true&land_success=true"
-              }
-              else if(launchSuccess==true && landSuccess==true && launchYear!=null)
-              {
-                  url = "https://api.spacexdata.com/v3/launches?limit=100&launch_success=true&land_success=true&launch_year="+launchYear+"";
-              }
-              else if(landSuccess==true && launchSuccess==false && launchYear!=null)
-              { 
-                 url = "https://api.spacexdata.com/v3/launches?limit=100&land_success=true&launch_year="+launchYear+"";   
-              }
-              else if(landSuccess==true && launchSuccess==false && launchYear==null)
-              {
-                 url = "https://api.spacexdata.com/v3/launches?limit=100&land_success=true";
-              }
-
-              fetching(url);
+             
+              let obj = {launchSuccess,landSuccess,launchYear};
+              Manager.filterRequest(obj);
 
 
                // filter data  
@@ -138,24 +111,9 @@ $(document).ready(function(){
                     $('#filter_landing_true').removeClass("disabled");
                     $('#filter_landing_false').addClass("disabled");  
                   landSuccess=false;  
-                  if(launchSuccess==true && launchYear!=null)
-                  {
-                    url = "https://api.spacexdata.com/v3/launches?limit=100&launch_success=true&launch_year="+launchYear+"";
-                  }
-                  else if(launchSuccess==true)
-                  {
-                     url = "https://api.spacexdata.com/v3/launches?limit=100&launch_success=true"
-                  }
-                  else if(launchYear!=null)
-                  {
-                     url = "https://api.spacexdata.com/v3/launches?limit=100&launch_year"+launchYear+"";
-                  }
-                  else 
-                  {
-                    url = "https://api.spacexdata.com/v3/launches?limit=100"
-                  } 
-
-                 fetching(url);
+                 
+                 let obj = {launchSuccess,landSuccess,launchYear};
+                 Manager.filterRequest(obj);
 
            }
            else
@@ -178,47 +136,14 @@ $(document).ready(function(){
                  }   
               launchYear=arr[1];
             
-              let url;
-               if(launchSuccess==false && landSuccess==false)
-               {
-                  url = "https://api.spaceXdata.com/v3/launches?limit=100&launch_year="+launchYear+"";
-               } 
-               else if(launchSuccess==true && landSuccess==true)
-               {
-                 url =  "https://api.spacexdata.com/v3/launches?limit=100&launch_success=true&land_success=true&launch_year="+launchYear+"";   
-               }
-               else if(launchSuccess==true)
-               {
-                  url = "https://api.spaceXdata.com/v3/launches?limit=100&launch_success=true&launch_year="+launchYear+"";
-               }
-               else
-               {
-                  url = "https://api.spaceXdata.com/v3/launches?limit=100&land_success=true&launch_year="+launchYear+"";   
-               }
+             
+             let obj = {launchSuccess,landSuccess,launchYear};
+             Manager.filterRequest(obj);
 
-            //   url =  "https://api.spacexdata.com/v3/launches?limit=100&launch_success=true&land_success=true&launch_year="+launchYear+"";
-             fetching(url);
+
             }     
         });
     }
-
-
-    function fetching(url)
-    {
-      fetch(url).then(function(response){
-         return response.json();
-      }).then(function(data){
-         console.log(data);
-         Data = data;
-         insertData(data);
-      }).catch(function(err)
-      {
-         console.log(err);
-      })
-    }
-    
-    
-    // to insert the data
     function insertData(data)
     {   
         $("#data_inserted").empty();
@@ -243,20 +168,24 @@ $(document).ready(function(){
                   
 
           var str = '<div class="col-md-3 col-sm-6 mb-2">'+
-                      '<div class="card mb-4" style="height:510px">'+
+                      '<div class="card mb-4" style="height:600px">'+
                         '<img class="card-img-top" src="'+img+'"alt="img/download.jpg">'+
                         '<div class="card-body">'+
                             '<h6 style="color:blue" class="card-title" style="text-decoration-color: lightskyblue">'+data[i].mission_name+" #"+data[i].flight_number+'</h6>'+
-                        '<p class="card-text"><strong>Mission ids:</strong><span>'+mission_id+'</span></p>'+
-                        '<p class="card-text"><strong>Launch year:</strong><span>'+data[i].launch_year+'</span></p>'+
-                        '<p class="card-text"><strong>Successful launch:</strong><span>'+data[i].launch_success+'</span></p>'+
-                        '<p class="card-text"><strong>Successful landing:</strong><span>'+land_succ+'</span></p>'+   
+                        '<p class="card-text"><strong>Mission ids: </strong><span>'+mission_id+'</span></p>'+
+                        '<p class="card-text"><strong>Launch year: </strong><span>'+data[i].launch_year+'</span></p>'+
+                        '<p class="card-text"><strong>Successful launch: </strong><span>'+data[i].launch_success+'</span></p>'+
+                        '<p class="card-text"><strong>Successful landing: </strong><span>'+land_succ+'</span></p>'+   
                        '</div>'+
                       '</div>'+ 
                     '</div>';
                     $("#data_inserted").append(str);          
         }
     }
+
+    
+    
+    
    
   
   });
